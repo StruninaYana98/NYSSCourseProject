@@ -17,6 +17,7 @@ namespace NYSS
 
         protected void Encrypt_Click(object sender, EventArgs e)
         {
+            ErrorsRefreshed();
             string s = TextInput.Text;
             string key = Key.Text;
             if (!Cryptographer.KeyValidator(key) || key == "")
@@ -26,7 +27,7 @@ namespace NYSS
             else if (s != "")
             {
                 EncryptedText.Text = Cryptographer.EncryptText(s, key);
-                Error.Text = "";
+
             }
             else
             {
@@ -36,10 +37,25 @@ namespace NYSS
 
         protected void Save_Click(object sender, EventArgs e)
         {
+            ErrorsRefreshed();
             try
             {
-                File.WriteAllText(Directory.Text + FileName.Text + ".txt", EncryptedText.Text);
-                SaveError.Text = "";
+                if (Validator.FileNameValidator(FileName.Text))
+                {
+                    if (Directory.Text != "")
+                    {
+                        File.WriteAllText(Validator.PathValidator(Directory.Text) + FileName.Text + ".txt", EncryptedText.Text);
+                        SaveError.Text = "Сохранено!";
+                    }
+                    else
+                    {
+                        SaveError.Text = "Введите директорию для сохранения";
+                    }
+                }
+                else
+                {
+                    FileNameError.Text = "Недопустимое имя файла";
+                }
 
 
             }
@@ -51,19 +67,37 @@ namespace NYSS
 
         protected void Download_Click(object sender, EventArgs e)
         {
+            ErrorsRefreshed();
             try
             {
-                File.WriteAllText(Server.MapPath("~/") + "TXTFile.txt", EncryptedText.Text);
-                Response.ContentType = "text/plain";
-                Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.txt");
-                Response.TransmitFile(Server.MapPath("~/") + "TXTFile.txt");
-                Response.End();
-                DownloadError.Text = "";
+                if (Validator.FileNameValidator(FileName.Text))
+                {
+                    File.WriteAllText(Server.MapPath("~/") + "TXTFile.txt", EncryptedText.Text);
+                    Response.ContentType = "text/plain";
+                    Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.txt");
+                    Response.TransmitFile(Server.MapPath("~/") + "TXTFile.txt");
+                    Response.End();
+
+                }
+                else
+                {
+                    FileNameError.Text = "Недопустимое имя файла";
+                }
             }
             catch (Exception ex)
             {
                 DownloadError.Text = ex.Message;
             }
         }
+        void ErrorsRefreshed()
+        {
+
+            Error.Text = "";
+            SaveError.Text = "";
+            FileNameError.Text = "";
+            DownloadError.Text = "";
+
+        }
+
     }
 }

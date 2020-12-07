@@ -41,6 +41,7 @@
                 <asp:Label CssClass="Label" runat="server" Text="Введите имя файла: "></asp:Label>
                 <asp:TextBox CssClass="TextField" runat="server" Wrap="true" ID="FileName" Text="New File" Height="30px" Width="223px"></asp:TextBox>
                 <asp:Label CssClass="Label" runat="server" Text=".txt"></asp:Label>
+                <asp:Label CssClass ="Error" runat="server" ID="FileNameError"></asp:Label>
                 <br />
                 <asp:Label CssClass="Label" runat="server" Text="Скачайте файл: "></asp:Label>
                 <asp:Button CssClass="Button" runat="server" Text="Скачать" ID="Download" OnClick="Download_Click"  />

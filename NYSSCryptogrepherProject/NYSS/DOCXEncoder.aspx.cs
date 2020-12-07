@@ -20,6 +20,7 @@ namespace NYSS
 
         protected void UploadButton_Click(object sender, EventArgs e)
         {
+            ErrorsRefreshed();
             if (UploadDocxFile.HasFile && UploadDocxFile.PostedFile.ContentType == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
             {
 
@@ -36,8 +37,8 @@ namespace NYSS
                         }
 
                         TextFromDocx.Text = s;
-                        StatusLabel.Text = "";
                     }
+                    File.Delete(Server.MapPath("~/") + filename);
                 }
                 catch (Exception ex)
                 {
@@ -52,6 +53,7 @@ namespace NYSS
 
         protected void Encrypt_Click(object sender, EventArgs e)
         {
+            ErrorsRefreshed();
             string s = TextFromDocx.Text;
             string key = Key.Text;
             if (!Cryptographer.KeyValidator(key) || key == "")
@@ -70,23 +72,38 @@ namespace NYSS
 
         protected void Save_Click(object sender, EventArgs e)
         {
+            ErrorsRefreshed();
             try
             {
-                using (WordprocessingDocument myDocument = WordprocessingDocument.Create(Directory.Text+FileName.Text+".docx", WordprocessingDocumentType.Document))
+                if (Validator.FileNameValidator(FileName.Text))
                 {
-                    string[] strings = EncryptedText.Text.Split('\n');
-                    MainDocumentPart mainPart = myDocument.AddMainDocumentPart();
-                    mainPart.Document = new Document();
-                    Body body = mainPart.Document.AppendChild(new Body());
-                    for (int i = 0; i < strings.Length; i++)
+                    if (Directory.Text != "")
                     {
-                        Paragraph para = body.AppendChild(new Paragraph());
-                        Run run = para.AppendChild(new Run());
-                        run.AppendChild(new Text(strings[i]));
-                    }
+                        using (WordprocessingDocument myDocument = WordprocessingDocument.Create(Validator.PathValidator(Directory.Text) + FileName.Text + ".docx", WordprocessingDocumentType.Document))
+                        {
+                            string[] strings = EncryptedText.Text.Split('\n');
+                            MainDocumentPart mainPart = myDocument.AddMainDocumentPart();
+                            mainPart.Document = new Document();
+                            Body body = mainPart.Document.AppendChild(new Body());
+                            for (int i = 0; i < strings.Length; i++)
+                            {
+                                Paragraph para = body.AppendChild(new Paragraph());
+                                Run run = para.AppendChild(new Run());
+                                run.AppendChild(new Text(strings[i]));
+                            }
 
+                        }
+                        SaveError.Text = "Сохранено!";
+                    }
+                    else
+                    {
+                        SaveError.Text = "Введите директорию для сохранения";
+                    }
                 }
-                SaveError.Text = "";
+                else
+                {
+                    FileNameError.Text = "Недопустимое имя файла";
+                }
             }
             catch(Exception ex)
             {
@@ -96,31 +113,48 @@ namespace NYSS
 
         protected void Download_Click(object sender, EventArgs e)
         {
+            ErrorsRefreshed();
             try
             {
-                using (WordprocessingDocument myDocument = WordprocessingDocument.Create(Server.MapPath("~/") + "DocxFile.docx", WordprocessingDocumentType.Document))
+                if (Validator.FileNameValidator(FileName.Text))
                 {
-                    string[] strings = EncryptedText.Text.Split('\n');
-                    MainDocumentPart mainPart = myDocument.AddMainDocumentPart();
-                    mainPart.Document = new Document();
-                    Body body = mainPart.Document.AppendChild(new Body());
-                    for (int i = 0; i < strings.Length; i++)
+                    using (WordprocessingDocument myDocument = WordprocessingDocument.Create(Server.MapPath("~/") + "DocxFile.docx", WordprocessingDocumentType.Document))
                     {
-                        Paragraph para = body.AppendChild(new Paragraph());
-                        Run run = para.AppendChild(new Run());
-                        run.AppendChild(new Text(strings[i]));
+                        string[] strings = EncryptedText.Text.Split('\n');
+                        MainDocumentPart mainPart = myDocument.AddMainDocumentPart();
+                        mainPart.Document = new Document();
+                        Body body = mainPart.Document.AppendChild(new Body());
+                        for (int i = 0; i < strings.Length; i++)
+                        {
+                            Paragraph para = body.AppendChild(new Paragraph());
+                            Run run = para.AppendChild(new Run());
+                            run.AppendChild(new Text(strings[i]));
+                        }
+                        Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                        Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.docx");
+                        Response.TransmitFile(Server.MapPath("~/") + "DocxFile.docx");
+                        Response.End();
+                        File.Delete(Server.MapPath("~/") + "DocxFile.docx");
                     }
-                    Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-                    Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.docx");
-                    Response.TransmitFile(Server.MapPath("~/") + "DocxFile.docx");
-                    Response.End();
-                    DownloadError.Text = "";
+                }
+                else
+                {
+                    FileNameError.Text = "Недопустимое имя файла";
                 }
             }
             catch (Exception ex)
             {
                 DownloadError.Text = ex.Message;
             }
+        }
+        void ErrorsRefreshed()
+        {
+            StatusLabel.Text = "";
+            Error.Text = "";
+            SaveError.Text = "";
+            FileNameError.Text = "";
+            DownloadError.Text = "";
+
         }
     }
 }

@@ -87,6 +87,15 @@ namespace NYSS
         protected global::System.Web.UI.WebControls.TextBox FileName;
 
         /// <summary>
+        /// FileNameError элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FileNameError;
+
+        /// <summary>
         /// Download элемент управления.
         /// </summary>
         /// <remarks>

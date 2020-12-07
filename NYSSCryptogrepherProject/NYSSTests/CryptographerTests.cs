@@ -45,10 +45,27 @@ namespace NYSSTests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
+        public void DecryptText_БыэТФщэеяёшtext_ПроВЕрочныйtext()
+        {
+            string teststring = "БыэТФщэеяёш text";
+            string expected = "ПроВЕрочный text";
+            string actual = Cryptographer.DecryptText(teststring, "скорпион");
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void KeyValidator_ключw_false()
         {
             bool actual = Cryptographer.KeyValidator("ключw");
             Assert.IsTrue(actual == false);
         }
+        [TestMethod]
+        public void KeyValidator_КлЮч_true()
+        {
+            bool actual = Cryptographer.KeyValidator("КлЮч");
+            Assert.IsTrue(actual);
+        }
+
     }
 }

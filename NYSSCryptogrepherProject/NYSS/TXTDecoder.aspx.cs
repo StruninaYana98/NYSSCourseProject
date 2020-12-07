@@ -17,6 +17,7 @@ namespace NYSS
 
         protected void UploadButton_Click(object sender, EventArgs e)
         {
+            ErrorsRefreshed();
             if (UploadTxtFile.HasFile && UploadTxtFile.PostedFile.ContentType == "text/plain")
             {
 
@@ -24,9 +25,8 @@ namespace NYSS
                 {
                     string filename = Path.GetFileName(UploadTxtFile.FileName);
                     UploadTxtFile.SaveAs(Server.MapPath("~/") + filename);
-
                     TextFromTxt.Text = File.ReadAllText(Server.MapPath("~/") + filename);
-                    StatusLabel.Text = "";
+                    File.Delete(Server.MapPath("~/") + filename);
 
                 }
                 catch (Exception ex)
@@ -42,6 +42,7 @@ namespace NYSS
 
         protected void Decrypt_Click(object sender, EventArgs e)
         {
+            ErrorsRefreshed();
             string s = TextFromTxt.Text;
             string key = Key.Text;
             if (!Cryptographer.KeyValidator(key) || key == "")
@@ -51,7 +52,6 @@ namespace NYSS
             else if (s != "")
             {
                 DecryptedText.Text = Cryptographer.DecryptText(s, key);
-                Error.Text = "";
             }
             else
             {
@@ -61,11 +61,26 @@ namespace NYSS
 
         protected void Save_Click(object sender, EventArgs e)
         {
+            ErrorsRefreshed();
             try
             {
-                File.WriteAllText(Directory.Text +FileName.Text+".txt", DecryptedText.Text);
-                SaveError.Text = "";
-
+                if (Validator.FileNameValidator(FileName.Text))
+                {
+                    if (Directory.Text != "")
+                    {
+                        File.WriteAllText(Validator.PathValidator(Directory.Text) + FileName.Text + ".txt", DecryptedText.Text);
+                        SaveError.Text = "Сохранено!";
+                    }
+                    else
+                    {
+                        SaveError.Text = "Введите директорию для сохранения";
+                    }
+                   
+                }
+                else
+                {
+                    FileNameError.Text = "Недопустимое имя файла";
+                }
 
             }
             catch (Exception ex)
@@ -76,14 +91,22 @@ namespace NYSS
 
         protected void Download_Click(object sender, EventArgs e)
         {
+            ErrorsRefreshed();
             try
             {
-                File.WriteAllText(Server.MapPath("~/") + "TXTFile.txt", DecryptedText.Text);
-                Response.ContentType = "text/plain";
-                Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.txt") ;
-                Response.TransmitFile(Server.MapPath("~/") + "TXTFile.txt");
-                Response.End();
-                DownloadError.Text = "";
+                if (Validator.FileNameValidator(FileName.Text))
+                {
+                    File.WriteAllText(Server.MapPath("~/") + "TXTFile.txt", DecryptedText.Text);
+                    Response.ContentType = "text/plain";
+                    Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.txt");
+                    Response.TransmitFile(Server.MapPath("~/") + "TXTFile.txt");
+                    Response.End();
+                    File.Delete(Server.MapPath("~/") + "TXTFile.txt");
+                }
+                else
+                {
+                    FileNameError.Text = "Недопустимое имя файла";
+                }
             }
             catch (Exception ex)
             {
@@ -91,7 +114,15 @@ namespace NYSS
             }
         }
 
-        
+        void ErrorsRefreshed()
+        {
+            StatusLabel.Text = "";
+            Error.Text = "";
+            SaveError.Text = "";
+            FileNameError.Text = "";
+            DownloadError.Text = "";
+
+        }
 
         
     }

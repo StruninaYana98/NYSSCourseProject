@@ -117,6 +117,7 @@
     <Compile Include="TXTDecoder.aspx.designer.cs">
       <DependentUpon>TXTDecoder.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
