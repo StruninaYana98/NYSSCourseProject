@@ -24,9 +24,9 @@ namespace NYSS
                 try
                 {
                     string filename = Path.GetFileName(UploadTxtFile.FileName);
-                    UploadTxtFile.SaveAs(Server.MapPath("~/") + filename);
-                    TextFromTxt.Text = File.ReadAllText(Server.MapPath("~/") + filename);
-                    File.Delete(Server.MapPath("~/") + filename);
+                    UploadTxtFile.SaveAs(Server.MapPath("~/files/") + filename);
+                    TextFromTxt.Text = File.ReadAllText(Server.MapPath("~/files/") + filename);
+                    File.Delete(Server.MapPath("~/files/") + filename);
 
                 }
                 catch (Exception ex)
@@ -75,7 +75,7 @@ namespace NYSS
                     {
                         SaveError.Text = "Введите директорию для сохранения";
                     }
-                   
+
                 }
                 else
                 {
@@ -92,26 +92,32 @@ namespace NYSS
         protected void Download_Click(object sender, EventArgs e)
         {
             ErrorsRefreshed();
+            
             try
             {
                 if (Validator.FileNameValidator(FileName.Text))
                 {
-                    File.WriteAllText(Server.MapPath("~/") + "TXTFile.txt", DecryptedText.Text);
+
+                    
+                    File.WriteAllText(Server.MapPath("~/files/") + "TXTFile.txt", DecryptedText.Text);
                     Response.ContentType = "text/plain";
                     Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.txt");
-                    Response.TransmitFile(Server.MapPath("~/") + "TXTFile.txt");
+                    Response.TransmitFile(Server.MapPath("~/files/") + "TXTFile.txt");
                     Response.End();
-                    File.Delete(Server.MapPath("~/") + "TXTFile.txt");
+                    
+
                 }
                 else
                 {
                     FileNameError.Text = "Недопустимое имя файла";
                 }
+               
             }
             catch (Exception ex)
             {
                 DownloadError.Text = ex.Message;
             }
+           
         }
 
         void ErrorsRefreshed()
@@ -124,6 +130,6 @@ namespace NYSS
 
         }
 
-        
+
     }
 }

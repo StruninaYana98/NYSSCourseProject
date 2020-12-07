@@ -27,8 +27,8 @@ namespace NYSS
                 try
                 {
                     string filename = Path.GetFileName(UploadDocxFile.FileName);
-                    UploadDocxFile.SaveAs(Server.MapPath("~/") + filename);
-                    using (WordprocessingDocument wpd = WordprocessingDocument.Open(Server.MapPath("~/") + filename, true))
+                    UploadDocxFile.SaveAs(Server.MapPath("~/files/") + filename);
+                    using (WordprocessingDocument wpd = WordprocessingDocument.Open(Server.MapPath("~/files/") + filename, true))
                     {
                         string s = "";
                         foreach (var item in wpd.MainDocumentPart.Document.Body.Elements<Paragraph>())
@@ -38,7 +38,7 @@ namespace NYSS
 
                         TextFromDocx.Text = s;
                     }
-                    File.Delete(Server.MapPath("~/") + filename);
+                    File.Delete(Server.MapPath("~/files/") + filename);
                 }
                 catch (Exception ex)
                 {
@@ -118,7 +118,7 @@ namespace NYSS
             {
                 if (Validator.FileNameValidator(FileName.Text))
                 {
-                    using (WordprocessingDocument myDocument = WordprocessingDocument.Create(Server.MapPath("~/") + "DocxFile.docx", WordprocessingDocumentType.Document))
+                    using (WordprocessingDocument myDocument = WordprocessingDocument.Create(Server.MapPath("~/files/") + "DocxFile.docx", WordprocessingDocumentType.Document))
                     {
                         string[] strings = EncryptedText.Text.Split('\n');
                         MainDocumentPart mainPart = myDocument.AddMainDocumentPart();
@@ -132,10 +132,11 @@ namespace NYSS
                         }
                         Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
                         Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.docx");
-                        Response.TransmitFile(Server.MapPath("~/") + "DocxFile.docx");
+                        Response.TransmitFile(Server.MapPath("~/files/") + "DocxFile.docx");
                         Response.End();
-                        File.Delete(Server.MapPath("~/") + "DocxFile.docx");
+
                     }
+                   
                 }
                 else
                 {

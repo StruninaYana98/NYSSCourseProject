@@ -72,10 +72,10 @@ namespace NYSS
             {
                 if (Validator.FileNameValidator(FileName.Text))
                 {
-                    File.WriteAllText(Server.MapPath("~/") + "TXTFile.txt", EncryptedText.Text);
+                    File.WriteAllText(Server.MapPath("~/files/") + "TXTFile.txt", EncryptedText.Text);
                     Response.ContentType = "text/plain";
                     Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.txt");
-                    Response.TransmitFile(Server.MapPath("~/") + "TXTFile.txt");
+                    Response.TransmitFile(Server.MapPath("~/files/") + "TXTFile.txt");
                     Response.End();
 
                 }
