@@ -9,7 +9,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace NYSS
+namespace NYSSCryptographer
 {
     public partial class DOCXEncoder : System.Web.UI.Page
     {

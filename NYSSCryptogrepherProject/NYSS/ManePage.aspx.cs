@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace NYSS
+namespace NYSSCryptographer
 {
     public partial class ManePage : System.Web.UI.Page
     {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManePage.aspx.cs" Inherits="NYSS.ManePage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManePage.aspx.cs" Inherits="NYSSCryptographer.ManePage" %>
 
 <!DOCTYPE html>
 

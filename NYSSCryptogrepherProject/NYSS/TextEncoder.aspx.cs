@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 
-namespace NYSS
+namespace NYSSCryptographer
 {
     public partial class TextEncoder : System.Web.UI.Page
     {

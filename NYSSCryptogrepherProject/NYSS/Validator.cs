@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace NYSS
+namespace NYSSCryptographer
 {
     public static class Validator
     {

@@ -57,9 +57,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NYSS\NYSS.csproj">
+    <ProjectReference Include="..\NYSS\NYSSCryptographer.csproj">
       <Project>{20990a34-616a-48c5-ba4f-effebe13206f}</Project>
-      <Name>NYSS</Name>
+      <Name>NYSSCryptographer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

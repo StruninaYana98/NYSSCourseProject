@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NYSS", "NYSS\NYSS.csproj", "{20990A34-616A-48C5-BA4F-EFFEBE13206F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NYSSCryptographer", "NYSS\NYSSCryptographer.csproj", "{20990A34-616A-48C5-BA4F-EFFEBE13206F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NYSSTests", "NYSSTests\NYSSTests.csproj", "{935AF4C0-85F7-46ED-8A76-43DD5B9E5D06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NYSSCryptographerTests", "NYSSTests\NYSSCryptographerTests.csproj", "{935AF4C0-85F7-46ED-8A76-43DD5B9E5D06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

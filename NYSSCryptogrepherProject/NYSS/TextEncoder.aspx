@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TextEncoder.aspx.cs" Inherits="NYSS.TextEncoder" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TextEncoder.aspx.cs" Inherits="NYSSCryptographer.TextEncoder" %>
 
 <!DOCTYPE html>
 

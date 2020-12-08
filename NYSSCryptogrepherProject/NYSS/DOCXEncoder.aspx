@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DOCXEncoder.aspx.cs" Inherits="NYSS.DOCXEncoder" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DOCXEncoder.aspx.cs" Inherits="NYSSCryptographer.DOCXEncoder" %>
 
 <!DOCTYPE html>
 
@@ -35,7 +35,7 @@
                 <asp:FileUpload CssClass="Label" ID="UploadDocxFile" runat="server" />
                 <br />
                 <asp:Button CssClass="Button" runat="server" ID="UploadButton" Text="Загрузить" OnClick="UploadButton_Click" />
-                <br />
+               
 
                 <asp:Label CssClass="Error" runat="server" ID="StatusLabel" Text="" />
                 <br />
