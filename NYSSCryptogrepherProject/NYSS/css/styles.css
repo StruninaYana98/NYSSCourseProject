@@ -1,0 +1,247 @@
+﻿body {
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.Description {
+    color: #FFAB6B;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    opacity: 0.9;
+    text-align: center;
+}
+
+.Description-container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 120px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.Cryptographer {
+    color: white;
+    font-family: cursive;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: block;
+    font-size: 25px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+    .Cryptographer:hover {
+        background-color: #FFAB6B;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+.Cryptographer-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    .Cryptographer-link:hover {
+        font-size: 27px;
+    }
+
+.menubutton {
+    border-radius: 4px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: block;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+    .menubutton:hover {
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+.link {
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    vertical-align: central;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px #3F9F69, 0 0 1em #3F9F69;
+}
+
+    .link:hover {
+        font-size: 22px;
+    }
+
+.menu {
+    background: #63DC90;
+    opacity: 0.8;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.menu-container {
+    max-width: 1000px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content {
+    padding: 0;
+    margin: 0;
+}
+
+.TextBox {
+    width: 100%;
+    max-width: 1000px;
+    min-height: 100px;
+    color: lightslategray;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    border-color: #63DC90;
+    border-radius: 4px;
+}
+
+    .TextBox:hover {
+        border-color: #FFAB6B;
+        box-shadow: 0 0 10px rgba(255,171,107,0.5);
+    }
+
+    .TextBox:focus {
+        outline: none;
+        border-color: #FFAB6B;
+        box-shadow: 0 0 10px rgba(255,171,107,0.5);
+        user-select: none;
+    }
+
+    .TextBox::selection {
+        background-color: #FFAB6B;
+        color: #fff;
+    }
+
+
+
+.Button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background: white;
+    box-shadow: 0 0 10px rgba(99,220,144,0.5);
+    border-radius: 4px;
+    border: solid 1px;
+    width: 150px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    color: #63DC90;
+    opacity: 0.9;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+    .Button:focus {
+        outline: none;
+    }
+
+    .Button:hover {
+        background: #63DC90;
+        color: white;
+    }
+
+.page {
+    padding-top: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    min-height: 100vh;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Label {
+    color: lightslategray;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+.KeyTextBox {
+    min-width: 200px;
+    min-height: 30px;
+    color: lightslategray;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+    .KeyTextBox:hover {
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        border-color: lightgrey;
+    }
+
+    .KeyTextBox:focus {
+        outline: none;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        border-color: lightgrey;
+    }
+    .KeyTextBox::selection {
+        background-color: #FFAB6B;
+        color: #fff;
+    }
+
+.Error {
+    color: #FFB0AE;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.TextField {
+    color: lightslategray;
+    opacity: 0.9;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+
+    .TextField:hover {
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        border-color: lightgrey;
+    }
+
+    .TextField:focus {
+        outline: none;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        border-color: lightgrey;
+    }
+    .TextField::selection {
+        background-color: #FFAB6B;
+        color: #fff;
+    }

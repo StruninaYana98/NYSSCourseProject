@@ -130,13 +130,15 @@ namespace NYSS
                             Run run = para.AppendChild(new Run());
                             run.AppendChild(new Text(strings[i]));
                         }
-                        Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-                        Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.docx");
-                        Response.TransmitFile(Server.MapPath("~/files/") + "DocxFile.docx");
-                        Response.End();
+                       
 
                     }
-                   
+                    Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                    Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.docx");
+                    Response.TransmitFile(Server.MapPath("~/files/") + "DocxFile.docx");
+                    Response.End();
+                    
+
                 }
                 else
                 {
