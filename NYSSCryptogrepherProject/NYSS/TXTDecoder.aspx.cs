@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Text;
+
 
 namespace NYSSCryptographer
 {
@@ -24,8 +26,8 @@ namespace NYSSCryptographer
                 try
                 {
                     string filename = Path.GetFileName(UploadTxtFile.FileName);
-                    UploadTxtFile.SaveAs(Server.MapPath("~/files/") + filename);
-                    TextFromTxt.Text = File.ReadAllText(Server.MapPath("~/files/") + filename);
+                    UploadTxtFile.SaveAs(Server.MapPath("~/files/") + filename);        
+                    TextFromTxt.Text =File.ReadAllText(Server.MapPath("~/files/") + filename, Encoding.GetEncoding(1251));
                     File.Delete(Server.MapPath("~/files/") + filename);
 
                 }
