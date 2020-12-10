@@ -63,10 +63,7 @@ namespace NYSSCryptographer
             for (int i = 0; i < keywordnumbers.Length; i++)
             {
                 keywordnumbers[i] = keywordnumbers[i] - 1;
-                if (keywordnumbers[i] < 0)
-                {
-                    keywordnumbers[i] = 33 + keywordnumbers[i];
-                }
+               
 
             }
             return keywordnumbers;
