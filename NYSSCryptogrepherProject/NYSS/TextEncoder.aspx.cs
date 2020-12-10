@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Text;
 
 namespace NYSSCryptographer
 {
@@ -44,7 +45,7 @@ namespace NYSSCryptographer
                 {
                     if (Directory.Text != "")
                     {
-                        File.WriteAllText(Validator.PathValidator(Directory.Text) + FileName.Text + ".txt", EncryptedText.Text);
+                        File.WriteAllText(Validator.PathValidator(Directory.Text) + FileName.Text + ".txt", EncryptedText.Text, Encoding.GetEncoding(1251));
                         SaveError.Text = "Сохранено!";
                     }
                     else
@@ -72,7 +73,7 @@ namespace NYSSCryptographer
             {
                 if (Validator.FileNameValidator(FileName.Text))
                 {
-                    File.WriteAllText(Server.MapPath("~/files/") + "TXTFile.txt", EncryptedText.Text);
+                    File.WriteAllText(Server.MapPath("~/files/") + "TXTFile.txt", EncryptedText.Text, Encoding.GetEncoding(1251));
                     Response.ContentType = "text/plain";
                     Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.txt");
                     Response.TransmitFile(Server.MapPath("~/files/") + "TXTFile.txt");

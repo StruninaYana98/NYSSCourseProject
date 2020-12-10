@@ -70,7 +70,7 @@ namespace NYSSCryptographer
                 {
                     if (Directory.Text != "")
                     {
-                        File.WriteAllText(Validator.PathValidator(Directory.Text) + FileName.Text + ".txt", DecryptedText.Text);
+                        File.WriteAllText(Validator.PathValidator(Directory.Text) + FileName.Text + ".txt", DecryptedText.Text, Encoding.GetEncoding(1251));
                         SaveError.Text = "Сохранено!";
                     }
                     else
@@ -101,7 +101,7 @@ namespace NYSSCryptographer
                 {
 
                     
-                    File.WriteAllText(Server.MapPath("~/files/") + "TXTFile.txt", DecryptedText.Text);
+                    File.WriteAllText(Server.MapPath("~/files/") + "TXTFile.txt", DecryptedText.Text, Encoding.GetEncoding(1251));
                     Response.ContentType = "text/plain";
                     Response.AppendHeader("Content-Disposition", $"attachment; filename={FileName.Text}.txt");
                     Response.TransmitFile(Server.MapPath("~/files/") + "TXTFile.txt");
